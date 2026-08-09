@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#7c3aed">
+
+    <title>LA Notes</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= APP ================= -->
+
+    <div class="app">
+
+        <!-- MOBILE OVERLAY -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-top">
+
+                <div class="brand">
+
+                    <div class="brand-logo">
+                        LA
+                    </div>
+
+                    <div>
+                        <h2>LA Notes</h2>
+                        <span>Personal Workspace</span>
+                    </div>
+
+                </div>
+
+                <button
+                    class="mobile-close"
+                    id="mobileClose"
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <button
+                class="create-btn"
+                id="createNoteBtn"
+            >
+                <span class="create-icon">＋</span>
+                <span>New Note</span>
+            </button>
+
+
+            <div class="sidebar-section">
+
+                <div class="section-label">
+                    Workspace
+                </div>
+
+                <button
+                    class="nav-item active"
+                    data-filter="all"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>All Notes</span>
+                    <span class="nav-count" id="allCount">0</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-filter="pinned"
+                >
+                    <span class="nav-icon">◇</span>
+                    <span>Pinned</span>
+                    <span class="nav-count" id="pinnedCount">0</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-filter="favorite"
+                >
+                    <span class="nav-icon">☆</span>
+                    <span>Favorites</span>
+                    <span class="nav-count" id="favoriteCount">0</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    id="openWhiteboardBtn"
+                >
+                    <span class="nav-icon">✎</span>
+                    <span>Whiteboard</span>
+                </button>
+
+            </div>
+
+
+            <div class="sidebar-section">
+
+                <div class="section-label">
+                    Library
+                </div>
+
+                <button
+                    class="nav-item"
+                    data-filter="trash"
+                >
+                    <span class="nav-icon">□</span>
+                    <span>Trash</span>
+                    <span class="nav-count" id="trashCount">0</span>
+                </button>
+
+            </div>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="storage-card">
+
+                    <div class="storage-icon">
+                        ◈
+                    </div>
+
+                    <div class="storage-info">
+                        <strong>Local Storage</strong>
+                        <span>Your data stays on this device</span>
+                    </div>
+
+                    <div class="storage-dot"></div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+            <!-- HEADER -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-toggle"
+                        id="menuToggle"
+                        aria-label="Open menu"
+                    >
+                        ☰
+                    </button>
+
+                    <div class="mobile-brand">
+                        <div class="mini-logo">LA</div>
+                        <strong>LA Notes</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search your notes..."
+                        autocomplete="off"
+                    >
+
+                    <span class="search-key">
+                        /
+                    </span>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button
+                        class="top-icon"
+                        id="themeBtn"
+                        title="Toggle theme"
+                    >
+                        ☾
+                    </button>
+
+                    <button
+                        class="avatar"
+                        title="Profile"
+                    >
+                        A
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+
+            <section class="content">
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <div class="eyebrow">
+                            YOUR WORKSPACE
+                        </div>
+
+                        <h1 id="pageTitle">
+                            My Notes
+                        </h1>
+
+                        <p id="pageSubtitle">
+                            Capture ideas, organize thoughts and create freely.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="heading-create"
+                        id="headingCreateBtn"
+                    >
+                        <span>＋</span>
+                        New Note
+                    </button>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="quick-actions">
+
+                    <button
+                        class="quick-card purple"
+                        id="quickNote"
+                    >
+
+                        <div class="quick-icon">
+                            ✦
+                        </div>
+
+                        <div>
+                            <strong>Quick Note</strong>
+                            <span>Start writing</span>
+                        </div>
+
+                        <b>→</b>
+
+                    </button>
+
+
+                    <button
+                        class="quick-card blue"
+                        id="quickBoard"
+                    >
+
+                        <div class="quick-icon">
+                            ✎
+                        </div>
+
+                        <div>
+                            <strong>Whiteboard</strong>
+                            <span>Draw & sketch</span>
+                        </div>
+
+                        <b>→</b>
+
+                    </button>
+
+                </div>
+
+
+                <!-- NOTES TOOLBAR -->
+
+                <div class="notes-toolbar">
+
+                    <div class="toolbar-title">
+                        <strong id="sectionTitle">
+                            Recent Notes
+                        </strong>
+
+                        <span id="noteCountLabel">
+                            0 notes
+                        </span>
+                    </div>
+
+
+                    <button
+                        class="sort-btn"
+                        id="sortBtn"
+                    >
+                        Recent
+                        <span>⌄</span>
+                    </button>
+
+                </div>
+
+
+                <!-- NOTES -->
+
+                <div
+                    class="notes-grid"
+                    id="notesGrid"
+                ></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= NOTE MODAL ================= -->
+
+    <div
+        class="modal"
+        id="noteModal"
+    >
+
+        <div class="modal-backdrop"></div>
+
+
+        <div class="note-modal">
+
+            <div class="modal-top">
+
+                <div>
+
+                    <span class="modal-eyebrow">
+                        NOTE EDITOR
+                    </span>
+
+                    <h2 id="modalHeading">
+                        Create Note
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    id="closeNoteModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="editor">
+
+                <input
+                    id="noteTitle"
+                    class="title-input"
+                    type="text"
+                    placeholder="Give your note a title..."
+                    maxlength="150"
+                >
+
+
+                <textarea
+                    id="noteContent"
+                    class="content-input"
+                    placeholder="Start writing your thoughts..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="editor-footer">
+
+                <span id="saveStatus">
+                    Not saved
+                </span>
+
+                <div>
+
+                    <button
+                        class="cancel-btn"
+                        id="cancelNoteBtn"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="save-note-btn"
+                        id="saveNoteBtn"
+                    >
+                        Save Note
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= WHITEBOARD ================= -->
+
+    <section
+        class="whiteboard"
+        id="whiteboard"
+    >
+
+        <!-- WHITEBOARD HEADER -->
+
+        <header class="board-header">
+
+            <div class="board-left">
+
+                <button
+                    class="board-back"
+                    id="closeWhiteboard"
+                >
+                    ←
+                </button>
+
+                <div class="board-brand">
+
+                    <div class="board-logo">
+                        LA
+                    </div>
+
+                    <div>
+                        <strong>Whiteboard</strong>
+                        <span>Draw • Sketch • Create</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="board-actions">
+
+                <button
+                    class="board-action"
+                    id="boardSaveBtn"
+                    title="Save drawing"
+                >
+                    <span>↓</span>
+                    <em>Save</em>
+                </button>
+
+
+                <button
+                    class="board-action danger"
+                    id="boardClearBtn"
+                    title="Clear board"
+                >
+                    <span>⌫</span>
+                    <em>Clear</em>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- CANVAS -->
+
+        <div
+            class="canvas-area"
+            id="canvasArea"
+        >
+
+            <canvas id="canvas"></canvas>
+
+            <div
+                class="board-hint"
+                id="boardHint"
+            >
+                Start drawing anywhere
+            </div>
+
+        </div>
+
+
+        <!-- FLOATING TOOLBAR -->
+
+        <div class="board-toolbar-wrapper">
+
+            <div class="board-toolbar" id="boardToolbar">
+
+                <button
+                    class="board-tool active"
+                    data-tool="pencil"
+                    title="Pencil"
+                >
+                    <span>✏</span>
+                    <small>Pencil</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="pen"
+                    title="Pen"
+                >
+                    <span>🖊</span>
+                    <small>Pen</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="brush"
+                    title="Brush"
+                >
+                    <span>🖌</span>
+                    <small>Brush</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="marker"
+                    title="Marker"
+                >
+                    <span>▰</span>
+                    <small>Marker</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="eraser"
+                    title="Eraser"
+                >
+                    <span>⌫</span>
+                    <small>Eraser</small>
+                </button>
+
+
+                <div class="tool-divider"></div>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="line"
+                    title="Line"
+                >
+                    <span>╱</span>
+                    <small>Line</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="rectangle"
+                    title="Rectangle"
+                >
+                    <span>□</span>
+                    <small>Box</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="circle"
+                    title="Circle"
+                >
+                    <span>○</span>
+                    <small>Circle</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    data-tool="text"
+                    title="Text"
+                >
+                    <span>T</span>
+                    <small>Text</small>
+                </button>
+
+
+                <div class="tool-divider"></div>
+
+
+                <!-- COLOR -->
+
+                <div class="color-control">
+
+                    <button
+                        class="color-button"
+                        id="colorButton"
+                        title="Choose color"
+                    >
+                        <span
+                            id="currentColor"
+                            style="background:#111827"
+                        ></span>
+                    </button>
+
+
+                    <div
+                        class="color-panel"
+                        id="colorPanel"
+                    >
+
+                        <div class="color-title">
+                            Brush Color
+                        </div>
+
+
+                        <div class="color-presets">
+
+                            <button
+                                class="preset"
+                                data-color="#111827"
+                                style="background:#111827"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#ef4444"
+                                style="background:#ef4444"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#f97316"
+                                style="background:#f97316"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#eab308"
+                                style="background:#eab308"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#22c55e"
+                                style="background:#22c55e"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#06b6d4"
+                                style="background:#06b6d4"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#3b82f6"
+                                style="background:#3b82f6"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#8b5cf6"
+                                style="background:#8b5cf6"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#ec4899"
+                                style="background:#ec4899"
+                            ></button>
+
+                            <button
+                                class="preset"
+                                data-color="#ffffff"
+                                style="background:#ffffff"
+                            ></button>
+
+                        </div>
+
+
+                        <label class="custom-color">
+
+                            <span>Custom</span>
+
+                            <input
+                                id="colorPicker"
+                                type="color"
+                                value="#111827"
+                            >
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SIZE -->
+
+                <div class="size-control">
+
+                    <span>Size</span>
+
+                    <input
+                        id="sizeRange"
+                        type="range"
+                        min="1"
+                        max="50"
+                        value="4"
+                    >
+
+                    <strong id="sizeValue">
+                        4
+                    </strong>
+
+                </div>
+
+
+                <div class="tool-divider"></div>
+
+
+                <button
+                    class="board-tool"
+                    id="undoBtn"
+                    title="Undo"
+                >
+                    <span>↶</span>
+                    <small>Undo</small>
+                </button>
+
+
+                <button
+                    class="board-tool"
+                    id="redoBtn"
+                    title="Redo"
+                >
+                    <span>↷</span>
+                    <small>Redo</small>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
